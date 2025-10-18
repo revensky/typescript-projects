@@ -1,0 +1,62 @@
+{
+  "name": "@revensky/json",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@typescript-projects/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "dependencies": {},
+  "nx": {
+    "sourceRoot": "packages/json/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:tsc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "packages/json/dist",
+          "main": "packages/json/src/index.ts",
+          "tsConfig": "packages/json/tsconfig.lib.json",
+          "stripLeadingPaths": true,
+          "assets": [
+            "packages/json/README.md",
+            "LICENSE"
+          ]
+        }
+      },
+      "version": {
+        "executor": "@jscutlery/semver:version",
+        "options": {
+          "baseBranch": "master",
+          "postTargets": ["build", "deploy"],
+          "preset": "conventionalcommits",
+          "push": true
+        }
+      },
+      "deploy": {
+        "executor": "ngx-deploy-npm:deploy",
+        "options": {
+          "access": "public",
+          "distFolderPath": "packages/json/dist"
+        },
+        "dependsOn": [
+          "build"
+        ]
+      }
+    }
+  }
+}
