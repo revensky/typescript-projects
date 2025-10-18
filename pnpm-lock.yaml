@@ -114,6 +114,12 @@ importers:
         specifier: ^6.0.5
         version: 6.2.0(typanion@3.14.0)
 
+  packages/json:
+    dependencies:
+      core-js:
+        specifier: ^3.46.0
+        version: 3.46.0
+
 packages:
 
   '@babel/code-frame@7.27.1':
