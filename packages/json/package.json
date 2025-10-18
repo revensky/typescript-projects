@@ -1,6 +1,6 @@
 {
   "name": "@revensky/json",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -44,7 +44,10 @@
         "executor": "@jscutlery/semver:version",
         "options": {
           "baseBranch": "master",
-          "postTargets": ["build", "deploy"],
+          "postTargets": [
+            "build",
+            "deploy"
+          ],
           "preset": "conventionalcommits",
           "push": true
         }
