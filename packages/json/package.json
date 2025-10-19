@@ -18,7 +18,6 @@
     "dist",
     "!**/*.tsbuildinfo"
   ],
-  "dependencies": {},
   "nx": {
     "sourceRoot": "packages/json/src",
     "targets": {
@@ -42,7 +41,10 @@
         "executor": "@jscutlery/semver:version",
         "options": {
           "baseBranch": "master",
-          "postTargets": ["build", "deploy"],
+          "postTargets": [
+            "build",
+            "deploy"
+          ],
           "preset": "conventionalcommits",
           "push": true
         }
