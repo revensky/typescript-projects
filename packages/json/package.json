@@ -1,6 +1,6 @@
 {
   "name": "@revensky/json",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -14,10 +14,6 @@
       "default": "./dist/index.js"
     }
   },
-  "files": [
-    "dist",
-    "!**/*.tsbuildinfo"
-  ],
   "nx": {
     "sourceRoot": "packages/json/src",
     "targets": {
@@ -40,7 +36,7 @@
       "version": {
         "executor": "@jscutlery/semver:version",
         "options": {
-          "baseBranch": "master",
+          "baseBranch": "fix/json/build-not-including-js-files",
           "postTargets": [
             "build",
             "deploy"
@@ -53,7 +49,8 @@
         "executor": "ngx-deploy-npm:deploy",
         "options": {
           "access": "public",
-          "distFolderPath": "packages/json/dist"
+          "distFolderPath": "packages/json/dist",
+          "registry": "http://localhost:4873"
         },
         "dependsOn": [
           "build"
